@@ -1,0 +1,18 @@
+##Minisharc Volume Serial sync
+
+[Unit]
+Description=Minisharc Volume Serial Service
+After=network.target
+After=volumio.service
+
+[Service]
+ExecStart=/usr/bin/python /usr/local/bin/minisharc_serial_sync.py
+ExecReload=/usr/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+RestartSec=10
+StartLimitInterval=30
+StartLimitBurst=20
+
+[Install]
+WantedBy=multi-user.target
